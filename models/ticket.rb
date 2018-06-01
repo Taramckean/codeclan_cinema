@@ -19,6 +19,12 @@ class Ticket
     @id = ticket['id'].to_i
   end
 
+  def delete()
+    sql = "DELETE FROM tickets where id = $1"
+    values = [@id]
+    SqlRunner.run(sql, values)
+  end
+
   def self.delete_all()
     sql = "DELETE FROM tickets"
     values = []
