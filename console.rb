@@ -30,27 +30,30 @@ film4 = Film.new({ 'title' => 'Ace Ventura', 'price' => 10})
 film4.save()
 
 
-ticket1 = Ticket.new({ 'customer_id' => 1, 'film_id' => 2})
-ticket1.save()
-ticket2 = Ticket.new({ 'customer_id' => 1, 'film_id' => 3})
-ticket2.save()
-ticket3 = Ticket.new({ 'customer_id' => 2, 'film_id' => 1})
-ticket3.save()
-ticket4 = Ticket.new({ 'customer_id' => 3, 'film_id' => 1})
-ticket4.save()
-ticket5 = Ticket.new({ 'customer_id' => 3, 'film_id' => 1})
-ticket5.save()
+
 
 screening1 = Screening.new({ 'showing' => '13:15', 'film_id' => 1})
 screening1.save()
-screening2 = Screening.new({ 'showing' => '18:30', 'film_id' => 2})
+screening2 = Screening.new({ 'showing' => '18:30', 'film_id' => 1})
 screening2.save()
-screening3 = Screening.new({ 'showing' => '23:00', 'film_id' => 3})
+screening3 = Screening.new({ 'showing' => '23:00', 'film_id' => 1})
 screening3.save()
+
+ticket1 = Ticket.new({ 'customer_id' => customer1.id, 'screening_id' => screening1.id})
+ticket1.save()
+ticket2 = Ticket.new({ 'customer_id' => customer2.id, 'screening_id' => screening1.id})
+ticket2.save()
+ticket3 = Ticket.new({ 'customer_id' => customer3.id, 'screening_id' => screening1.id})
+ticket3.save()
+ticket4 = Ticket.new({ 'customer_id' => customer4.id, 'screening_id' => screening2.id})
+ticket4.save()
+ticket5 = Ticket.new({ 'customer_id' => customer1.id, 'screening_id' => screening3.id})
+ticket5.save()
 
 films = Film.all()
 customers = Customer.all()
 
+film1.most_popular_screening
 customer1.name = "Louise"
 customer1.update()
 
