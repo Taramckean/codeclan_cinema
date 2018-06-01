@@ -25,15 +25,6 @@ class Ticket
     SqlRunner.run(sql, values)
   end
 
-  def count_tickets()
-    sql = "SELECT * tickets where customer_id = $1 "
-    values = [@customer_id]
-    SqlRunner.run(sql, values)
-  end
-
-  #Check how many tickets were bought by a customer
-  # Check how many customers are going to watch a certain film
-
   def self.delete_all()
     sql = "DELETE FROM tickets"
     values = []
