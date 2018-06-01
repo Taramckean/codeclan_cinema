@@ -22,9 +22,9 @@ film1 = Film.new({ 'title' => 'Rocky Horror Picture Show', 'price' => 14})
 film1.save()
 film2 = Film.new({ 'title' => 'Babe', 'price' => 8 })
 film2.save()
-film3 = Film.new({ 'title' => 'Ace Ventura', 'price' => 14})
+film3 = Film.new({ 'title' => 'Ace Ventura', 'price' => 10})
 film3.save()
-film4 = Film.new({ 'title' => 'Ace Ventura', 'price' => 14})
+film4 = Film.new({ 'title' => 'Ace Ventura', 'price' => 10})
 film4.save()
 
 
@@ -43,6 +43,9 @@ films = Film.all()
 customers = Customer.all()
 
 customer1.name = "Louise"
+customer1.update()
+
+customer1.buy_ticket(film1)
 customer1.update()
 
 updated_customers = Customer.all()

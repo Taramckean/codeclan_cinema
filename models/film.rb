@@ -18,6 +18,13 @@ class Film
     @id = film['id'].to_i
   end
 
+  def check_moviegoers()
+    sql = "SELECT * from tickets where film_id = $1"
+    values = [@id]
+    results = SqlRunner.run(sql, values)
+    results.count()
+  end
+
   def customer()
     sql = "SELECT customers.* from customers INNER JOIN tickets on
     customers.id = tickets.customer_id WHERE film_id = $1 "

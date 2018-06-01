@@ -18,20 +18,16 @@ attr_accessor :name, :funds
     @id = customer['id'].to_i
   end
 
-  # def stars()
-  #   sql = "SELECT stars.* FROM stars INNER JOIN castings ON stars.id =
-  #   castings.star_id WHERE movie_id = $1"
-  #   values = [@id]
-  #   star_data = SqlRunner.run(sql, values)
-  #   return Star.map_items(star_data)
-  # end
-  # # def movies()
-  # #   sql = "SELECT movies.* FROM movies INNER JOIN castings
-  #  ON movies.id = castings.movie_id WHERE star_id = $1"
-  # #   values = [@id]
-  # #   movie_data = SqlRunner.run(sql, values)
-  # #   return Movie.map_items(movie_data)
-  # # end
+  def buy_ticket(film)
+    @funds -= film.price
+  end
+
+  def count_tickets()
+    sql = "SELECT * from tickets where customer_id = $1 "
+    values = [@id]
+    results = SqlRunner.run(sql, values)
+    results.count()
+  end
 
   def film()
     sql = "SELECT films.* from films INNER JOIN tickets on
