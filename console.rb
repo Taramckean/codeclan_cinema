@@ -29,9 +29,6 @@ film3.save()
 film4 = Film.new({ 'title' => 'Ace Ventura', 'price' => 10})
 film4.save()
 
-
-
-
 screening1 = Screening.new({ 'showing' => '13:15', 'film_id' => 1})
 screening1.save()
 screening2 = Screening.new({ 'showing' => '18:30', 'film_id' => 1})
@@ -53,7 +50,6 @@ ticket5.save()
 films = Film.all()
 customers = Customer.all()
 
-film1.most_popular_screening
 customer1.name = "Louise"
 customer1.update()
 

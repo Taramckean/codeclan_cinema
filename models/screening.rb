@@ -25,6 +25,12 @@ class Screening
     @id = screening['id'].to_i
   end
 
-
+  def self.find(id)
+    sql = "SELECT * FROM screenings WHERE id = $1"
+    values = [id]
+    result = SqlRunner.run(sql, values)
+    screening = self.new(result.first)
+    return screening
+  end
 
 end

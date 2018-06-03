@@ -26,38 +26,44 @@ class Film
   end
 
   def screening
-    sql = "SE gs"
+    sql = "SELECT * from screenings"
     values = []
     screenings = SqlRunner.run(sql, values)
     result = screenings.map {|screening| Screening.new(screening)}
     return result
   end
 
-  def self.find(id)
-    sql = "SELECT * FROM films WHERE id = $1"
-    values = [id]
-    result = SqlRunner.run(sql, values)
-    film = self.new(result.first)
-    return film
-  end
-
 
   def most_popular_screening()
-    sql = "SELECT screening_id, COUNT(*) AS count FROM tickets
-    GROUP BY screening_id ORDER BY COUNT desc LIMIT 1"
+    sql = "SELECT screening_id
+     FROM tickets
+     GROUP BY screening_id
+     ORDER BY COUNT(*)
+     DESC
+     LIMIT 1;"
     values = []
     results = SqlRunner.run(sql, values)[0]
     most_popular = Screening.find(results["screening_id"])
     return most_popular.showing
   end
 
-  # def self.find(id)
-  #   sql = "SELECT * FROM films WHERE id = $1"
-  #   values = [id]
-  #   result = SqlRunner.run(sql, values)
-  #   film = self.new(result.first)
-  #   return film
-  # end
+#   SELECT TOP 1
+#   name
+# FROM
+#   table
+# GROUP BY
+#   name
+# ORDER BY
+#   COUNT(name) DESC
+
+  # SELECT       `column`
+  #   FROM     `your_table`
+  #   GROUP BY `column`
+  #   ORDER BY COUNT(*) DESC
+  #   LIMIT    1;
+
+    # sql = "SELECT screening_id, COUNT(*) AS count FROM tickets
+    # GROUP BY screening_id ORDER BY COUNT desc LIMIT 1"
 
     # # tickets array is an array of ticket objects for a given film.
     # screening1 = 0
